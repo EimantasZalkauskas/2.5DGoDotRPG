@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="TestProject"
+config/name="2.5D RPG Project Git Version"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
