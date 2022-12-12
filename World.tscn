@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://World/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Tree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/StaminaUI.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -787,9 +788,15 @@ position = Vector2( 504, -104 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 8 )]
-margin_left = 7.0
-margin_top = 5.0
-margin_right = 67.0
-margin_bottom = 17.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 62.0
+margin_bottom = 14.0
+
+[node name="StaminaUI" parent="CanvasLayer" instance=ExtResource( 11 )]
+margin_left = 2.0
+margin_top = 18.0
+margin_right = -258.0
+margin_bottom = -151.0
 
 [editable path="Camera2D"]

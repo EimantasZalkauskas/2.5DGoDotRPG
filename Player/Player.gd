@@ -31,6 +31,7 @@ func _ready():
 	
 	randomize()
 	stats.connect("no_health", self, "queue_free")
+	stats.connect("no_stamina", self, "no_stamina")
 	animationTree.active = true
 	swordHitback.knockback_vec = roll_vec
 
@@ -66,12 +67,16 @@ func move_state(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	move()
-	
-	if Input.is_action_just_pressed("roll"):
-		state = ROLL
-	
-	if Input.is_action_just_pressed("attack"):
-		state = ATTACK
+	if stats.stamina == 0:
+		no_stamina()
+	else:
+		if Input.is_action_just_pressed("roll"):
+			state = ROLL
+			stamina_reduced(5)
+		
+		if Input.is_action_just_pressed("attack"):
+			state = ATTACK
+			stamina_reduced(5)
 
 func attack_state():
 	velocity = Vector2.ZERO
@@ -96,6 +101,12 @@ func player_health_loss():
 	if hurtBox.damage_area != null:
 		stats.health -= hurtBox.damage_area.damage
 		hurtBox.damage_area = null
+		
+func stamina_reduced(val):
+	stats.stamina -= val
+
+func no_stamina():
+	print("0 stamina reached")
 
 func _on_HurtBox_area_entered(area):
 	hurtBox.check_area_overlap(area, true, blinkAnimationPlayer)
@@ -103,4 +114,3 @@ func _on_HurtBox_area_entered(area):
 
 
 
-	
