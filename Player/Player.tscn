@@ -905,7 +905,11 @@ anims/RESET = SubResource( 57 )
 anims/Start = SubResource( 55 )
 anims/Stop = SubResource( 56 )
 
+[node name="PostActionCoutdownTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="timeout" from="PostActionCoutdownTimer" to="." method="_on_PostActionCoutdownTimer_timeout"]
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="HurtBox"]

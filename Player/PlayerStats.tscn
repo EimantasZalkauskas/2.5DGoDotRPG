@@ -6,4 +6,4 @@
 max_health = 4
 max_stamina = 10
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ConstStaminaRegenTimer" to="." method="_on_ConstStaminaRegenTimer_timeout"]

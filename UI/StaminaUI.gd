@@ -1,7 +1,7 @@
 extends Control
 
-var stamina = 10 setget set_stamina
-var max_stamina =  10 setget set_max_stamina
+var stamina = 6 setget set_stamina
+var max_stamina =  6 setget set_max_stamina
 
 onready var staminaUIFull = $StaminaUIFull
 onready var staminaUIEmpty = $StaminaUIEmpty

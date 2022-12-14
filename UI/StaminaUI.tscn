@@ -12,13 +12,13 @@ margin_bottom = -169.0
 script = ExtResource( 3 )
 
 [node name="StaminaUIEmpty" type="TextureRect" parent="."]
-margin_right = 100.0
+margin_right = 60.0
 margin_bottom = 11.0
 texture = ExtResource( 2 )
 stretch_mode = 2
 
 [node name="StaminaUIFull" type="TextureRect" parent="."]
-margin_right = 100.0
+margin_right = 60.0
 margin_bottom = 11.0
 texture = ExtResource( 1 )
 expand = true

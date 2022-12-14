@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://World/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://World/Tree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=10]
 [ext_resource path="res://UI/StaminaUI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/ActionsUI.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -509,6 +510,7 @@ tile_data = PoolIntArray( -327688, 0, 4, -327687, 0, 196609, -327686, 0, 196609,
 
 [node name="Camera2D" parent="." instance=ExtResource( 10 )]
 position = Vector2( 152, 64 )
+zoom = Vector2( 1.4, 1.4 )
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
 position = Vector2( -248, -176 )
@@ -799,4 +801,11 @@ margin_top = 18.0
 margin_right = -258.0
 margin_bottom = -151.0
 
+[node name="ActionsUI" parent="CanvasLayer" instance=ExtResource( 12 )]
+margin_left = 138.0
+margin_top = 154.0
+margin_right = 153.0
+margin_bottom = 171.0
+
 [editable path="Camera2D"]
+[editable path="CanvasLayer/ActionsUI"]

@@ -2,16 +2,13 @@ extends Node
 
 export var max_health = 1 setget set_max_health
 export var max_stamina = 0 setget set_max_stamina
-export var stamina_regen_amount = 0.5
-export var stamina_regen_speed = 0.8
+export var stamina_regen_amount = 1
+export var stamina_regen_speed = 1
 
 var health = max_health setget set_health
 var stamina = max_stamina setget set_stamina
 var min_stamina = 0
-
-
-
-
+var no_action = true
 
 signal no_health
 signal health_changed(value)
@@ -21,7 +18,10 @@ signal no_stamina
 signal stamina_changed(value)
 signal max_stamina_change(value)
 
-onready var timer = $Timer
+signal attack_cooldown(value)
+signal roll_cooldown(value)
+
+onready var constTimer = $ConstStaminaRegenTimer
 
 func set_max_health(value):
 	max_health = value
@@ -52,13 +52,22 @@ func set_stamina_regeneration(value):
 		stamina += value
 		emit_signal("stamina_changed", stamina)
 
+func update_stamina_regen_speed(value):
+	stamina_regen_speed = value
 
+
+func attack_cooldown():
+	emit_signal("attack_cooldown")
+
+func roll_cooldown():
+	emit_signal("roll_cooldown")
+	
 
 func _ready():
 	self.health = max_health
 	self.stamina = max_stamina
 
 
-func _on_Timer_timeout():
+func _on_ConstStaminaRegenTimer_timeout():
 	set_stamina_regeneration(stamina_regen_amount)
-	timer.start(stamina_regen_speed)
+	constTimer.start(stamina_regen_speed)
