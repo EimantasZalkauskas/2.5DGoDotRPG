@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/Sword Icon 11x11.png" type="Texture" id=1]
+[ext_resource path="res://UI/Empty 11x11.png" type="Texture" id=2]
+[ext_resource path="res://UI/Roll Icon 11x11.png" type="Texture" id=3]
+[ext_resource path="res://UI/ActionsUI.gd" type="Script" id=4]
+
+[node name="ActionsUI" type="Control"]
+margin_right = 36.0
+margin_bottom = 16.0
+script = ExtResource( 4 )
+
+[node name="BarBackground" type="TextureRect" parent="."]
+margin_right = 35.0
+margin_bottom = 15.0
+texture = ExtResource( 2 )
+stretch_mode = 1
+
+[node name="SwordAttackReady" type="TextureRect" parent="."]
+margin_right = 15.0
+margin_bottom = 15.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+
+[node name="SwordAttackEmpty" type="TextureRect" parent="."]
+margin_bottom = 15.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="RollReady" type="TextureRect" parent="."]
+margin_left = 20.0
+margin_right = 35.0
+margin_bottom = 15.0
+texture = ExtResource( 3 )
+stretch_mode = 1
+
+[node name="RollEmpty" type="TextureRect" parent="."]
+margin_left = 20.0
+margin_right = 20.0
+margin_bottom = 15.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1

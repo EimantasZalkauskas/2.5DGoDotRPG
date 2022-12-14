@@ -15,8 +15,7 @@ var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vec = Vector2.DOWN
 var stats = PlayerStats
-
-var damage_taken = 0
+var actionUI = ActionsUi
 
 
 onready var sprite = $Sprite
@@ -26,6 +25,7 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitback = $HitboxPivot/SwordHitbox
 onready var hurtBox = $HurtBox
 onready var blinkAnimationPlayer = $BlinkAnimationPlayer
+onready var postActionCountdownTimer = $PostActionCoutdownTimer
 
 func _ready():
 	
@@ -64,14 +64,25 @@ func move_state(delta):
 	else:
 		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+
 	
 	move()
-	
 	if Input.is_action_just_pressed("roll"):
-		state = ROLL
+		if actionUI.roll_ready == true:
+			if stamina_reduced(2):
+				state = ROLL
+				stats.roll_cooldown()
+				post_action_coutdown_init()
+				stamina_regen_reset()
 	
 	if Input.is_action_just_pressed("attack"):
-		state = ATTACK
+		if actionUI.attack_ready == true:
+			if stamina_reduced(1):
+				state = ATTACK
+				stats.attack_cooldown()
+				print(actionUI.attack_ready)
+				post_action_coutdown_init()
+				stamina_regen_reset()
 
 func attack_state():
 	velocity = Vector2.ZERO
@@ -96,11 +107,23 @@ func player_health_loss():
 	if hurtBox.damage_area != null:
 		stats.health -= hurtBox.damage_area.damage
 		hurtBox.damage_area = null
+		
+func stamina_reduced(val):
+	if stats.stamina >= val:
+		stats.stamina -= val
+		return true
+
+func post_action_coutdown_init():
+	postActionCountdownTimer.start(4)
+	
+func stamina_regen_reset():
+	stats.update_stamina_regen_speed(1)
+
+	
 
 func _on_HurtBox_area_entered(area):
 	hurtBox.check_area_overlap(area, true, blinkAnimationPlayer)
 	
 
-
-
-	
+func _on_PostActionCoutdownTimer_timeout():
+	stats.update_stamina_regen_speed(0.5)
